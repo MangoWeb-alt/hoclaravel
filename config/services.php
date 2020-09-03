@@ -30,9 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'facebook' =>[
-        'client_id' => '266326077819274',
-        'client_secret' => '9cc05f7194483fe80bc024ef9c9d9b03',
-        'redirect' => 'http://localhost/admin/callback'
+        'client_id' => env('266326077819274'),
+        'client_secret' => env('9cc05f7194483fe80bc024ef9c9d9b03'),
+        'redirect' => env('http://laraveltest.com/admin/callback'),
     ],
     'google' => [
         'client_id' => '361869663051-6hughek69npt9br1dapnudku3n8v87h0.apps.googleusercontent.com',

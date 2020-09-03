@@ -1,4 +1,6 @@
-<?php use Illuminate\Support\Facades\Session; ?>
+<?php use Illuminate\Support\Facades\Session;
+    use Illuminate\Support\Facades\Auth;
+?>
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,13 +60,13 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="{{URL::to('style/backend/images/2.png')}}">
-                        <span class="username"><?php echo Session::get('admin_name'); ?></span>
+                        <span class="username"><?php echo Auth::user()->admin_name; ?></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                        <li><a href="{{URL::to('/logout')}}"><i class="fa fa-key"></i> Log Out</a></li>
+                        <li><a href="{{URL::to('/logout-auth')}}"><i class="fa fa-key"></i> Log Out</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -147,7 +149,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;">
+                        <a href="javascript:">
                             <i class="fa fa-book"></i>
                             <span>Order</span>
                         </a>
@@ -155,6 +157,16 @@
                             <li><a href="{{URL::to('/manage-order')}}">Order List</a></li>
 
 
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:">
+                            <i class="fa fa-tasks"></i>
+                            <span>Discount Code</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{URL::to('/add_users')}}">Add Code</a></li>
+                            <li><a href="{{URL::to('all_users')}}">Code List</a></li>
                         </ul>
                     </li>
                 </ul>            </div>
