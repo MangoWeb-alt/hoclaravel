@@ -40,7 +40,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <input type="submit" value="Sign Up" name="register">
             <a href="{{URL::to('/login-facebook')}}" style="color:red">Login Facebook</a> ||
             <a href="{{URL::to('/login-google')}}" style="color:blue">Login Google</a> ||
-            <a href="{{URL::to('/admin')}}" style="color:red">Login Admin</a> ||
             <a href="{{URL::to('/login-auth')}}" style="color:blue">Login Auth</a>
         </form>
     </div>

@@ -23,8 +23,8 @@ Route::post('/search','Home_Controller@search');
 
 //admin
 Route::get('/dashboard','Admin_Controller@show_dashboard');
-Route::get('/admin','Admin_Controller@admin');
-Route::post('/admin-login','Admin_Controller@admin_login');
+//Route::get('/admin','Admin_Controller@admin');
+//Route::post('/admin-login','Admin_Controller@admin_login');
 Route::get('/logout','Admin_Controller@logout');
 //category
 Route::get('/add-category','Category_Controller@add_category');
@@ -151,3 +151,11 @@ Route::get('/logout-auth','Auth_Controller@logout_auth');
 //USER
 Route::get('/all_users','User_Controller@index');
 Route::get('/add_users','User_Controller@Add_Users');
+Route::post('/assign-roles','User_Controller@assign_roles');
+Route::post('/store-roles','User_Controller@store_roles');
+Route::get('users',
+    [
+        'uses'=>'UserController@index',
+        'as'=> 'Users',
+        'middleware'=> 'roles'
+    ]);

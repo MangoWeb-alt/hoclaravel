@@ -6,6 +6,7 @@ use App\Brand;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
@@ -17,11 +18,11 @@ class Product_Controller extends Controller
 {
     public function Auth_login()
     {
-        $admin_id = session::get('admin_id');
+        $admin_id = Auth::id('admin_id');
         if($admin_id){
             return redirect::to('dashboard');
         } else {
-            return redirect::to('admin')->send();
+            return redirect::to('login-auth')->send();
         }
     }
     public function add_product()

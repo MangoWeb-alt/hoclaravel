@@ -162,11 +162,11 @@
                     <li class="sub-menu">
                         <a href="javascript:">
                             <i class="fa fa-tasks"></i>
-                            <span>Discount Code</span>
+                            <span>Users</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{URL::to('/add_users')}}">Add Code</a></li>
-                            <li><a href="{{URL::to('all_users')}}">Code List</a></li>
+                            <li><a href="{{URL::to('/add_users')}}">Add Users</a></li>
+                            <li><a href="{{URL::to('/all_users')}}">Users List</a></li>
                         </ul>
                     </li>
                 </ul>            </div>

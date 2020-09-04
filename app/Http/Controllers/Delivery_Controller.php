@@ -6,6 +6,7 @@ use App\City;
 use App\Province;
 use App\wards;
 use App\Feeship;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -15,11 +16,11 @@ class Delivery_Controller extends Controller
 {
     public function Auth_login()
     {
-        $admin_id = session::get('admin_id');
+        $admin_id = Auth::id('admin_id');
         if($admin_id){
             return redirect::to('dashboard');
         } else {
-            return redirect::to('admin')->send();
+            return redirect::to('login-auth')->send();
         }
     }
     public function update_delivery_ajax(Request $request)

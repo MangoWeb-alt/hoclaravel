@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -14,11 +15,11 @@ class Coupon_Controller extends Controller
 {
     public function Auth_login()
     {
-        $admin_id = session::get('admin_id');
+        $admin_id = Auth::id('admin_id');
         if($admin_id){
             return redirect::to('dashboard');
         } else {
-            return redirect::to('admin')->send();
+            return redirect::to('login-auth')->send();
         }
     }
     public function insert_coupon()

@@ -1,9 +1,9 @@
 @extends('admin_layout')
-@section('admin_content')
+@section('content')
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Liệt kê users
+                 Users list
             </div>
             <div class="row w3-res-tb">
                 <div class="col-sm-5 m-b-xs">
@@ -43,9 +43,8 @@
                             </label>
                         </th>
 
-                        <th>Tên user</th>
+                        <th>user</th>
                         <th>Email</th>
-                        <th>Phone</th>
                         <th>Password</th>
                         <th>Author</th>
                         <th>Admin</th>
@@ -59,15 +58,13 @@
                         <form action="{{url('/assign-roles')}}" method="POST">
                             @csrf
                             <tr>
-
                                 <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                                 <td>{{ $user->admin_name }}</td>
                                 <td>{{ $user->admin_email }} <input type="hidden" name="admin_email" value="{{ $user->admin_email }}"></td>
-                                <td>{{ $user->admin_phone }}</td>
                                 <td>{{ $user->admin_password }}</td>
-                                <td><input type="checkbox" name="author_role" {{$user->hasRole('author') ? 'checked' : ''}}></td>
-                                <td><input type="checkbox" name="admin_role"  {{$user->hasRole('admin') ? 'checked' : ''}}></td>
-                                <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
+                                <td><input type="checkbox" name="author_role" value="2" {{$user->hasRole('author') ? 'checked' : ''}}></td>
+                                <td><input type="checkbox" name="admin_role" value="1"  {{$user->hasRole('admin') ? 'checked' : ''}}></td>
+                                <td><input type="checkbox" name="user_role" value="3"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
 
                                 <td>
 
