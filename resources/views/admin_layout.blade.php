@@ -1,5 +1,5 @@
 <?php use Illuminate\Support\Facades\Session;
-    use Illuminate\Support\Facades\Auth;
+      use Illuminate\Support\Facades\Auth;
 ?>
 <!DOCTYPE html>
 <head>
@@ -155,8 +155,6 @@
                         </a>
                         <ul class="sub">
                             <li><a href="{{URL::to('/manage-order')}}">Order List</a></li>
-
-
                         </ul>
                     </li>
                     <li class="sub-menu">
@@ -169,6 +167,11 @@
                             <li><a href="{{URL::to('/all_users')}}">Users List</a></li>
                         </ul>
                     </li>
+                    @impersonate
+                    <li>
+                    <li><a href="{{URL::to('/impersonate-destroy')}}">Stop assign role</a></li>
+                    </li>
+                    @endimpersonate
                 </ul>            </div>
             <!-- sidebar menu end-->
         </div>

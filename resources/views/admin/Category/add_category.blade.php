@@ -19,6 +19,10 @@
                     <input type="text" name="category_name" data-validation="length" data-validation-length="min3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name:">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">CategorySlug</label>
+                    <input type="text" name="category_slug" data-validation="length" data-validation-length="min3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name:">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputPassword1">Description</label>
                     <textarea name="category_description" rows="8" data-validation="length" data-validation-length="min3" class="form-control" id="ckEditor"></textarea>
                 </div>
@@ -26,6 +30,15 @@
                     <label for="exampleInputPassword1">Keywords</label>
                     <textarea name="meta_keywords" rows="8" data-validation="length" data-validation-length="min3" class="form-control" id="ckEditor8"></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Parent</label>
+                </div>
+                <select name="category_parent" class="form-control input-sm m-bot15">
+                    <option value="0">Category parent</option>
+                    @foreach($category as $key => $value)
+                    <option value="{{$value->category_id}}">{{$value->category_name}}</option>
+                     @endforeach
+                </select>
                 <div class="form-group">
                     <label for="exampleInputFile">Status</label>
                 </div>

@@ -28,7 +28,8 @@ class Category_Controller extends Controller
     public function add_category()
     {
         $this->auth_login();
-        return view('admin.Category.add_category');
+        $category = Category::where('category_parent','0')->orderBy('category_id','DESC')->get();
+        return view('admin.Category.add_category')->with('category',$category);
     }
     public function save_category(Request $request)
     {
@@ -36,7 +37,9 @@ class Category_Controller extends Controller
         $data = $request->all();
         $category = new Category();
         $category->category_name = $data['category_name'];
+        $category->category_slug = $data['category_slug'];
         $category->category_status = $data['category_status'];
+        $category->category_parent = $data['category_parent'];
         $category->category_description = $data['category_description'];
         $category->meta_keywords = $data['meta_keywords'];
         $category->save();
@@ -87,6 +90,7 @@ class Category_Controller extends Controller
         $data['category_name'] = $request->category_name;
         $data['meta_keywords']=$request->meta_keywords;
         $data['category_description'] = $request->category_description;
+        $data['category_slug'] = $request->category_slug;
         Category::where('category_id',$category_id)->update($data);
         return redirect::to('/category-list');
     }

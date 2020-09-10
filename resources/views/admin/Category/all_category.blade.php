@@ -25,6 +25,8 @@
                             </label>
                         </th>
                         <th>CategoryName</th>
+                        <th>CategorySlug</th>
+                        <th>CategoryParent</th>
                         <th>Description</th>
                         <th>Action</th>
                         <th style="width:30px; "></th>
@@ -35,6 +37,18 @@
                         <tr>
                             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                             <td>{{$cate_pro->category_name}}</td>
+                            <td>{{$cate_pro->category_slug}}</td>
+                            <td>
+                                @if($cate_pro->category_parent == 0)
+                                   <span style="color: red">Parent-category</span>
+                                @else
+                                    @foreach($category_product as $key => $cate_sub_pro)
+                                        @if($cate_sub_pro->category_id == $cate_pro->category_parent)
+                                    <span style="color: green">{{$cate_sub_pro->category_name}}</span>
+                                        @endif
+                                    @endforeach
+                                 @endif
+                            </td>
                             <td>{{$cate_pro->category_description}}</td>
                             <td><span class="text-ellipsis">
                            <?php
@@ -57,15 +71,15 @@
                     @endforeach
                     </tbody>
                 </table>
-                <form action="{{url('/import-csv')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="file" accept=".xlsx .ods" >
-                    <input type="submit" value="Import file excel" name="import_csv" class="btn btn-warning">
-                </form>
-                <form action="{{url('/export-csv')}}" method="POST">
-                    @csrf
-                    <input type="submit" value="Export file excel" name="export_csv" class="btn btn-success">
-                </form>
+{{--                <form action="{{url('/import-csv')}}" method="POST" enctype="multipart/form-data">--}}
+{{--                    @csrf--}}
+{{--                    <input type="file" name="file" accept=".xlsx .ods" >--}}
+{{--                    <input type="submit" value="Import file excel" name="import_csv" class="btn btn-warning">--}}
+{{--                </form>--}}
+{{--                <form action="{{url('/export-csv')}}" method="POST">--}}
+{{--                    @csrf--}}
+{{--                    <input type="submit" value="Export file excel" name="export_csv" class="btn btn-success">--}}
+{{--                </form>--}}
             </div>
         </div>
     </div>

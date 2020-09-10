@@ -227,9 +227,28 @@
                         <div class="panel panel-default">
                             @foreach($category_product as $key=>$cate_pro)
                             <div class="panel-heading">
-                                <h4 class="panel-title"><a href="{{URL::to('/show-category/'.$cate_pro->category_id)}}">{{$cate_pro->category_name}}</a></h4>
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#{{$cate_pro->category_slug}}">
+                                        @if($cate_pro->category_parent == 0)
+                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        <a>{{$cate_pro->category_name}}</a>
+                                        @endif
+                                    </a>
+                                </h4>
                             </div>
+                                <div id="{{$cate_pro->category_slug}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul>
+                                            @foreach($category_product as $key => $cate_sub_pro)
+                                                @if($cate_sub_pro->category_parent == $cate_pro->category_id)
+                                            <li><a href="{{URL('/show-category/'.$cate_sub_pro->category_id)}}">{{$cate_sub_pro->category_name}}</a></li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             @endforeach
+
                         </div>
                     </div><!--/category-products-->
 

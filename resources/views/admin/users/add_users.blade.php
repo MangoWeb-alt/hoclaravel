@@ -9,14 +9,14 @@
                 <?php
                 $message = Session::get('message');
                 if($message){
-                    echo '<span class="text-alert">'.$message.'</span>';
+                    echo '<span class="text-alert" style="color: red; font-size: 40px; font-weight: 400">'.$message.'</span>';
                     Session::put('message',null);
                 }
                 ?>
                 <div class="panel-body">
 
                     <div class="position-center">
-                        <form role="form" action="{{URL::to('/store-users')}}" method="post">
+                        <form role="form" action="{{URL::to('/store-roles')}}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên users</label>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="text" name="admin_password" class="form-control" id="exampleInputEmail1" placeholder="Password">
+                                <input type="password" name="admin_password" class="form-control" id="exampleInputEmail1" placeholder="Password">
                             </div>
 
                             <button type="submit"  class="btn btn-info">Add users</button>

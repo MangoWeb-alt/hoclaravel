@@ -90,9 +90,11 @@ class Product_Controller extends Controller
     public function edit_product($product_id)
     {
         $this->auth_login();
-       $edit_product = Product::join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
+        $edit_product = Product::join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->where('product_id',$product_id)->get();
-        return view('admin.Product.edit_product')->with('edit_product',$edit_product);
+        $category = Category::orderBy('category_id','DESC')->get();
+        $brand = Brand::orderBy('brand_id','DESC')->get();
+        return view('admin.Product.edit_product')->with('edit_product',$edit_product)->with('category',$category)->with('brand',$brand);
     }
     public function update_product(Request $request,$product_id)
     {
@@ -101,7 +103,6 @@ class Product_Controller extends Controller
         $product = Product::find($product_id);
 
         $product->product_name =  $data['product_name'];
-
         $product->brand_id =  $data['brand_name'];
         $product->category_id =  $data['category_name'];
         $product->product_quantity =  $data['product_quantity'];

@@ -21,12 +21,18 @@
                             </div>
                             <select name="category_name" class="form-control input-sm m-bot15">
                                     <option value="{{$product->category_id}}">{{$product->category_name}}</option>
+                                        @foreach($category as $key => $value_category)
+                                    <option value="{{$value_category->category_id}}">{{$value_category->category_name}}</option>
+                                        @endforeach
                             </select>
                             <div class="form-group">
                                 <label for="exampleInputFile">BrandName</label>
                             </div>
                             <select name="brand_name" class="form-control input-sm m-bot15">
                                     <option value="{{$product->brand_id}}">{{$product->brand_name}}</option>
+                                @foreach($brand as $key => $value_brand)
+                                    <option value="{{$value_brand->brand_id}}">{{$value_brand->brand_name}}</option>
+                                @endforeach
                             </select>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">ProductPrice</label>
