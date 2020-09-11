@@ -159,8 +159,16 @@
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{URL::to('/Home')}}" class="active">Home</a></li>
+                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    @foreach($post as $key => $value)
+                                    <li><a href="{{url('/post-details/'.$value->post_slug)}}">{{$value->post_name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         </ul>
                     </div>
+
                 </div>
                 <div class="col-sm-3">
                     <form action="{{URL::to('/search')}}" method="post">

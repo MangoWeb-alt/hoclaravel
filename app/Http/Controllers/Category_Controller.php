@@ -80,8 +80,9 @@ class Category_Controller extends Controller
     public function show_edit_category($category_id)
     {
         $this->auth_login();
+        $category = Category::orderBy('category_id','DESC')->get();
         $show_edit_category = Category::where('category_id',$category_id)->get();
-        return view('admin.Category.edit_category')->with('edit_category',$show_edit_category);
+        return view('admin.Category.edit_category')->with('edit_category',$show_edit_category)->with('category',$category);
     }
     public function update_category(Request $request,$category_id)
     {

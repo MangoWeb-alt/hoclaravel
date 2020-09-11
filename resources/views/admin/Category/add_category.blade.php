@@ -16,19 +16,19 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="exampleInputEmail1">CategoryName</label>
-                    <input type="text" name="category_name" data-validation="length" data-validation-length="min3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name:">
+                    <input type="text" name="category_name" data-validation="length" required="" data-validation-length="min3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name:">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">CategorySlug</label>
-                    <input type="text" name="category_slug" data-validation="length" data-validation-length="min3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name:">
+                    <input type="text" name="category_slug" data-validation="length" required="" data-validation-length="min3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category Slug:">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Description</label>
-                    <textarea name="category_description" rows="8" data-validation="length" data-validation-length="min3" class="form-control" id="ckEditor"></textarea>
+                    <textarea name="category_description" rows="8" data-validation="length" required="" data-validation-length="min3" class="form-control" id="ckEditor"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Keywords</label>
-                    <textarea name="meta_keywords" rows="8" data-validation="length" data-validation-length="min3" class="form-control" id="ckEditor8"></textarea>
+                    <textarea name="meta_keywords" rows="8" data-validation="length" required="" data-validation-length="min3" class="form-control" id="ckEditor8"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputFile">Parent</label>

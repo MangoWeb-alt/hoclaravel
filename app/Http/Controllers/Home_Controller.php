@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
@@ -17,6 +18,7 @@ class Home_Controller extends Controller
     }
     public function index(Request $request)
     {
+        $post = Post::orderby('post_id','DESC')->where('post_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
 
        $meta_description = "Accessories for Game;Especially GamePad!";
@@ -29,7 +31,7 @@ class Home_Controller extends Controller
         $all_product = DB::table('tbl_product')->join('tbl_category','tbl_category.category_id','=','tbl_product.category_id')
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->get();
         return view('Home.home')->with('category_product',$category_product)->with('brand_product',$brand_product)->with('all_product',$all_product)
-            ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
+            ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
     }
     public function show_search(Request $request)
     {

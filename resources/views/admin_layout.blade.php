@@ -132,6 +132,16 @@
                     <li class="sub-menu">
                         <a href="javascript:">
                             <i class="fa fa-tasks"></i>
+                            <span>Post</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{{URL::to('/add-post')}}">Add Post</a></li>
+                            <li><a href="{{URL::to('/post-list')}}">Post List</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:">
+                            <i class="fa fa-tasks"></i>
                             <span>Discount Code</span>
                         </a>
                         <ul class="sub">

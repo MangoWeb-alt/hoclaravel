@@ -168,3 +168,10 @@ Route::group(['middleware' => 'auth_roles','auth_roles'=>['admin','author']],fun
 });
 Route::get('/impersonate/{admin_id}','User_Controller@impersonate');
 Route::get('/impersonate-destroy','User_Controller@impersonate_destroy');
+//Post
+Route::get('/add-post','Post_Controller@add_post')->middleware('auth_roles');
+Route::post('/save-post','Post_Controller@save_post')->middleware('auth_roles');
+Route::get('/post-list','Post_Controller@all_post')->middleware('auth_roles');
+Route::get('/non-active-post/{post_id}','Post_Controller@non_active_post')->middleware('auth_roles');
+Route::get('/active-post/{post_id}','Post_Controller@active_post')->middleware('auth_roles');
+Route::get('/post-details/{post_slug}','Post_Controller@post_details');

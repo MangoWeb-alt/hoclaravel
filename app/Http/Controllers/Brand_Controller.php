@@ -28,6 +28,7 @@ class Brand_Controller extends Controller
     public function save_brand(Request $request)
     {
         $this->auth_login();
+        $this->validation_save_brand($request);
         $data = $request->all();
         $brand = new Brand();
         $brand->brand_name = $data['brand_name'];
@@ -35,7 +36,16 @@ class Brand_Controller extends Controller
         $brand->brand_description = $data['brand_description'];
         $brand->meta_keywords = $data['meta_keywords'];
         $brand->save();
-        return redirect::to('/brand-list');
+        return redirect::to('/add-brand');
+    }
+    public function validation_save_brand($request)
+    {
+        return $this->validate($request,[
+            'brand_name' => 'required|',
+            'brand_status' => 'required|',
+            'brand_description' => 'required|',
+            'meta_keywords' => 'required|'
+        ]);
     }
     public function brand_list()
     {
