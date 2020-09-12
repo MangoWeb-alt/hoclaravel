@@ -49,7 +49,7 @@
                                     @endforeach
                                  @endif
                             </td>
-                            <td>{{$cate_pro->category_description}}</td>
+                            <td>{!!$cate_pro->category_description!!}</td>
                             <td><span class="text-ellipsis">
                            <?php
                                     if($cate_pro->category_status == 1){

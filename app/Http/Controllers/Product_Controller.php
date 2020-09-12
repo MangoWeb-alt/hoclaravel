@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Brand;
 use App\Category;
+use App\CategoryPost;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,8 +85,10 @@ class Product_Controller extends Controller
     public function delete_product($product_id)
     {
         $this->auth_login();
+        $product = Product::where('product_id',$product_id)->first();
         Product::where('product_id',$product_id)->delete();
-        return redirect::to('product-list');
+        unlink('style/uploads/product/'.$product->product_image);
+        return redirect::to('product-list')->with('message','delete product successfully');
     }
     public function edit_product($product_id)
     {
@@ -131,6 +134,7 @@ class Product_Controller extends Controller
     }
     public function product_details(Request $request,$product_id)
     {
+        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
         $category_product = Category::orderby('category_id','desc')->where('category_status','2')->get();
         $brand_product = Brand::orderby('brand_id','desc')->where('brand_status','2')->get();
@@ -152,7 +156,7 @@ class Product_Controller extends Controller
             ->whereNotIn('product_id',[$product_id])->limit(3)->get();
         return view('Home.details.show_details')->with('category_product',$category_product)->with('brand_product',$brand_product)
             ->with('show_details',$show_details)->with('related_product',$related_product)->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
     }
 
 

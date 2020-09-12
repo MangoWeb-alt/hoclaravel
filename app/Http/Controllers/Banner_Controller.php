@@ -12,9 +12,9 @@ class Banner_Controller extends Controller
     {
         $admin_id = Auth::id('admin_id');
         if($admin_id){
-            return redirect::to('dashboard');
+            return redirect::to('/dashboard');
         } else {
-            return redirect::to('login-auth')->send();
+            return redirect::to('/login-auth')->send();
         }
     }
     public function manage_slider()

@@ -36,8 +36,8 @@
                             <td>{{$all_pro->product_name}}</td>
                             <td>{{$all_pro->category_name}}</td>
                             <td>{{$all_pro->brand_name}}</td>
-                            <td>{{$all_pro->product_description}}</td>
-                            <td>{{$all_pro->product_content}}</td>
+                            <td>{!!$all_pro->product_description!!}</td>
+                            <td>{!!$all_pro->product_content!!}</td>
                             <td>{{number_format($all_pro->product_price)}} VNĐ</td>
                             <td>{{number_format($all_pro->product_quantity)}} </td>
                             <td><img src="{{('style/uploads/product/'.$all_pro->product_image)}}" width="120" height="100"></td>

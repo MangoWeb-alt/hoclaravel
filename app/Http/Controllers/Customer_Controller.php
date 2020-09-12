@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Banner;
+use App\CategoryPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class Customer_Controller extends Controller
 {
     public function login_checkout(Request $request)
     {
+        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
         $meta_description = "";
         $meta_keywords ="" ;
@@ -22,7 +24,7 @@ class Customer_Controller extends Controller
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->where('brand_status','2')->get();
         return view('Home.customer_details.login-checkout')->with('category_product',$category_product)->with('brand_product',$brand_product)
             ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
     }
     public function save_checkout(Request $request)
     {

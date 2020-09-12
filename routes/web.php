@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,24 +26,28 @@ Route::post('/search','Home_Controller@search');
 Route::get('/dashboard','Admin_Controller@show_dashboard');
 //Route::get('/admin','Admin_Controller@admin');
 //Route::post('/admin-login','Admin_Controller@admin_login');
-Route::get('/logout','Admin_Controller@logout');
+//Route::get('/logout','Admin_Controller@logout');
+
+
 //category
+
 Route::get('/add-category','Category_Controller@add_category')->middleware('auth_roles');
 Route::post('/save-category','Category_Controller@save_category')->middleware('auth_roles');
-Route::get('/category-list','Category_Controller@category_list')->middleware('auth_roles');
+Route::get('/category-list','Category_Controller@category_list');
 Route::get('/non-active-category/{category_id}','Category_Controller@non_active_category')->middleware('auth_roles');
 Route::get('/active-category/{category_id}','Category_Controller@active_category')->middleware('auth_roles');
 Route::get('/edit-category/{category_id}','Category_Controller@show_edit_category')->middleware('auth_roles');
 Route::post('/update-category/{category_id}','Category_Controller@update_category')->middleware('auth_roles');
 Route::get('/delete-category/{category_id}','Category_Controller@delete_category')->middleware('auth_roles');
 Route::get('/show-category/{category_id}','Category_Controller@show_category');
-Route::post('/export-csv','Category_Controller@export_csv')->middleware('auth_roles');
-Route::post('/import-csv','Category_Controller@import_csv')->middleware('auth_roles');
+
+//Route::post('/export-csv','Category_Controller@export_csv')->middleware('auth_roles');
+//Route::post('/import-csv','Category_Controller@import_csv')->middleware('auth_roles');
 
 //brand
 Route::get('/add-brand','Brand_Controller@add_brand')->middleware('auth_roles');
 Route::post('/save-brand','Brand_Controller@save_brand')->middleware('auth_roles');
-Route::get('/brand-list','Brand_Controller@brand_list')->middleware('auth_roles');
+Route::get('/brand-list','Brand_Controller@brand_list');
 Route::get('/non-active-brand/{brand_id}','Brand_Controller@non_active_brand')->middleware('auth_roles');
 Route::get('/active-brand/{brand_id}','Brand_Controller@active_brand')->middleware('auth_roles');
 Route::get('/edit-brand/{brand_id}','Brand_Controller@show_edit_brand')->middleware('auth_roles');
@@ -53,10 +58,9 @@ Route::get('/show-brand/{brand_id}','Brand_Controller@show_brand');
 //product
 Route::group(['middleware' => 'auth_roles'],function () {
     Route::get('/add-product', 'Product_Controller@add_product');
-    Route::get('/product-list', 'Product_Controller@all_product');
 });
 
-
+Route::get('/product-list', 'Product_Controller@all_product');
 Route::post('/save-product','Product_Controller@save_product')->middleware('auth_roles');
 Route::get('/non-active-product/{product_id}','Product_Controller@non_active_product')->middleware('auth_roles');
 Route::get('/active-product/{product_id}','Product_Controller@active_product')->middleware('auth_roles');
@@ -78,9 +82,9 @@ Route::get('/unset-discount-code','Cart_Controller@unset_discount_code');
 
 //Coupon
 Route::post('/check-coupon','Cart_Controller@Check_coupon');
-Route::get('/insert-coupon','Coupon_Controller@insert_coupon');
+Route::get('/insert-coupon','Coupon_Controller@insert_coupon')->middleware('auth_roles');
 Route::post('/add-coupon','Coupon_Controller@add_coupon')->middleware('auth_roles');
-Route::get('/coupon-list','Coupon_Controller@coupon_list')->middleware('auth_roles');
+Route::get('/coupon-list','Coupon_Controller@coupon_list');
 Route::get('/delete-coupon/{coupon_id}','Coupon_Controller@delete_coupon')->middleware('auth_roles');
 
 
@@ -137,11 +141,11 @@ Route::get('/delete-delivery/{delivery_id}','Delivery_Controller@delete_delivery
 //order
 Route::group(['middleware' => 'auth_roles','auth_roles'=>['admin','author']],function () {
     Route::get('/print-order/{checkout_code}', 'Order_Controller@print_order');
-    Route::get('/manage-order', 'Order_Controller@manage_order');
     Route::get('/view-order/{order_code}', 'Order_Controller@view_order');
     Route::post('/update-order-quantity', 'Order_Controller@update_order_quantity');
     Route::post('/update-quantity-order', 'Order_Controller@update_quantity_order');
 });
+Route::get('/manage-order', 'Order_Controller@manage_order');
 //Banner
 Route::group(['middleware' => 'auth_roles','auth_roles'=>['admin','author']],function () {
     Route::get('/add-slider', 'Banner_Controller@add_slider');
@@ -168,10 +172,18 @@ Route::group(['middleware' => 'auth_roles','auth_roles'=>['admin','author']],fun
 });
 Route::get('/impersonate/{admin_id}','User_Controller@impersonate');
 Route::get('/impersonate-destroy','User_Controller@impersonate_destroy');
+//CategoryPost
+Route::get('/add-category-post','Post_Category_Controller@add_category_post')->middleware('auth_roles');
+Route::post('/save-post','Post_Category_Controller@save_category_post')->middleware('auth_roles');
+Route::get('/post-category-list','Post_Category_Controller@all_category_post');
+Route::get('/non-active-category-post/{post_category_id}','Post_Category_Controller@non_active_category_post')->middleware('auth_roles');
+Route::get('/active-category-post/{post_category_id}','Post_Category_Controller@active_category_post')->middleware('auth_roles');
+Route::get('/edit-category-post/{post_category_id}','Post_Category_Controller@edit_category_post')->middleware('auth_roles');
+Route::post('/update-category-post/{post_category_id}','Post_Category_Controller@update_category_post')->middleware('auth_roles');
+Route::get('/delete-category-post/{post_category_id}','Post_Category_Controller@delete_category_post')->middleware('auth_roles');
+Route::get('/post-category-details/{post_category_slug}','Post_Category_Controller@post_category_details');
 //Post
 Route::get('/add-post','Post_Controller@add_post')->middleware('auth_roles');
 Route::post('/save-post','Post_Controller@save_post')->middleware('auth_roles');
-Route::get('/post-list','Post_Controller@all_post')->middleware('auth_roles');
-Route::get('/non-active-post/{post_id}','Post_Controller@non_active_post')->middleware('auth_roles');
-Route::get('/active-post/{post_id}','Post_Controller@active_post')->middleware('auth_roles');
-Route::get('/post-details/{post_slug}','Post_Controller@post_details');
+Route::get('/post-list','Post_Controller@posts_list');
+Route::get('/delete-post/{posts_id}','Post_Controller@delete_posts');

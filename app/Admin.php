@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
 class Admin extends Authenticatable
 {
    public $timestamps = false;
@@ -16,6 +19,10 @@ class Admin extends Authenticatable
 
     public function roles(){
         return $this->belongsToMany('App\Roles');
+    }
+    public function Check_login()
+    {
+       return $this->admin_id;
     }
    public function getAuthPassword()
    {

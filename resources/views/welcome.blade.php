@@ -162,7 +162,7 @@
                             <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     @foreach($post as $key => $value)
-                                    <li><a href="{{url('/post-details/'.$value->post_slug)}}">{{$value->post_name}}</a></li>
+                                    <li><a href="{{url('/post-details/'.$value->post_category_slug)}}">{{$value->post_category_name}}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

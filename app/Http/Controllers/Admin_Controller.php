@@ -28,7 +28,7 @@ class Admin_Controller extends Controller
     }
     public function show_dashboard()
     {
-        $this->auth_login();
+        $this->Auth_login();
         return view('admin_layout');
     }
     public function admin()

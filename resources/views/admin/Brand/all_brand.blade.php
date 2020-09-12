@@ -35,7 +35,7 @@
                         <tr>
                             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                             <td>{{$brand_pro->brand_name}}</td>
-                            <td>{{$brand_pro->brand_description}}</td>
+                            <td>{!!$brand_pro->brand_description!!}</td>
                             <td><span class="text-ellipsis">
                            <?php
                                     if($brand_pro->brand_status == 1){

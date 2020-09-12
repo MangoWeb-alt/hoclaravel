@@ -17,9 +17,11 @@ class AccessPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->hasAnyRoles(['admin'])){
-            return $next($request);
-        }
-        return Redirect::to('/dashboard');
+
+            if (Auth::user()->hasRole('admin')) {
+                return $next($request);
+            } else {
+                return Redirect::to('/dashboard');
+            }
     }
 }
