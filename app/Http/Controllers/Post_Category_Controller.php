@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
+use App\Brand;
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,10 +85,22 @@ class Post_Category_Controller extends Controller
     {
         $this->Auth_login();
         CategoryPost::Where('post_category_id',$post_category_id)->delete();
-        return Redirect()->back()->with('message','Delete category post successfully');
+        return Redirect()->back()->with('message','Delete post successfully');
     }
-    public function post_details($post_category_slug)
+    public function post_category_details(Request $request,$post_category_slug)
     {
+        $meta_description = '';
+        $meta_keywords = '';
+        $meta_title = '' ;
+        $url_canonical = $request->url();
 
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+        $slider = Banner::orderby('slider_id','DESC')->get();
+        $category_product = Category::orderby('category_id','desc')->where('category_status','2')->get();
+        $brand_product = Brand::orderby('brand_id','desc')->get();
+
+        return view ('Home.post.post_category')->with('category_product',$category_product)->with('brand_product',$brand_product)
+            ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
     }
 }

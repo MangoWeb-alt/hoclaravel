@@ -40,7 +40,6 @@
                 </select>
                 <input type="submit" name="save_post" value="Save" class="btn btn-info">
             </form>
-
         </div>
     </section>
 

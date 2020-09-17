@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblBrand extends Migration
+class TblXaphuonthitran extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTblBrand extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_brand', function (Blueprint $table) {
-            $table->Increments('brand_id');
-            $table->string('brand_name');
-            $table->string('brand_description');
-            $table->string('meta_keywords');
-            $table->integer('brand_status');
+        Schema::create('tbl_xaphuongthitran', function (Blueprint $table) {
+            $table->Primary('xaid');
+            $table->String('name_xa',100);
+            $table->String('type',30);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateTblBrand extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_brand');
+        Schema::dropIfExists('tbl_xaphuongthitran');
     }
 }

@@ -14,7 +14,7 @@ class CreateTblSocial extends Migration
     public function up()
     {
         Schema::create('tbl_social', function (Blueprint $table) {
-            $table->Increments('social_id');
+            $table->Increments('user_id');
             $table->String('provider_user_id',100);
             $table->String('provider',100);
             $table->integer('user');

@@ -15,7 +15,7 @@ class CreateTblAdmin extends Migration
     {
         Schema::create('tbl_admin', function (Blueprint $table) {
             $table->Increments('admin_id');
-            $table->String('admin_username');
+            $table->String('admin_email');
             $table->String('admin_password');
             $table->String('admin_name');
             $table->timestamps();

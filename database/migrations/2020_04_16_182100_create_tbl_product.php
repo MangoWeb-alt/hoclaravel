@@ -19,7 +19,11 @@ class CreateTblProduct extends Migration
             $table->Integer('brand_id');
             $table->String('product_name');
             $table->String('product_description');
+            $table->String('meta_product_keywords');
             $table->String('product_content');
+            $table->String('product_price');
+            $table->String('product_quantity');
+            $table->String('product_sold');
             $table->String('product_image');
             $table->Integer('product_status');
             $table->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblBrand extends Migration
+class AdminRoles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTblBrand extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_brand', function (Blueprint $table) {
-            $table->Increments('brand_id');
-            $table->string('brand_name');
-            $table->string('brand_description');
-            $table->string('meta_keywords');
-            $table->integer('brand_status');
+        Schema::create('admin_roles', function (Blueprint $table) {
+            $table->Increments('id_admin_roles');
+            $table->Integer('admin_admin_id');
+            $table->Integer('roles_id_roles');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateTblBrand extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_brand');
+        Schema::dropIfExists('tbl_social');
     }
 }

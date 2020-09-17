@@ -15,11 +15,10 @@ class CreateTblOrder extends Migration
     {
         Schema::create('tbl_order', function (Blueprint $table) {
             $table->Increments('order_id');
-            $table->Integer('customer_id');
             $table->Integer('shipping_id');
-            $table->Integer('payment_id');
-            $table->String('order_total');
+            $table->Integer('customer_id');
             $table->Integer('order_status');
+            $table->String('order_code');
             $table->timestamps();
         });
     }

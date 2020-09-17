@@ -174,7 +174,7 @@ Route::get('/impersonate/{admin_id}','User_Controller@impersonate');
 Route::get('/impersonate-destroy','User_Controller@impersonate_destroy');
 //CategoryPost
 Route::get('/add-category-post','Post_Category_Controller@add_category_post')->middleware('auth_roles');
-Route::post('/save-post','Post_Category_Controller@save_category_post')->middleware('auth_roles');
+Route::post('/save-category-post','Post_Category_Controller@save_category_post')->middleware('auth_roles');
 Route::get('/post-category-list','Post_Category_Controller@all_category_post');
 Route::get('/non-active-category-post/{post_category_id}','Post_Category_Controller@non_active_category_post')->middleware('auth_roles');
 Route::get('/active-category-post/{post_category_id}','Post_Category_Controller@active_category_post')->middleware('auth_roles');
@@ -186,4 +186,9 @@ Route::get('/post-category-details/{post_category_slug}','Post_Category_Controll
 Route::get('/add-post','Post_Controller@add_post')->middleware('auth_roles');
 Route::post('/save-post','Post_Controller@save_post')->middleware('auth_roles');
 Route::get('/post-list','Post_Controller@posts_list');
-Route::get('/delete-post/{posts_id}','Post_Controller@delete_posts');
+Route::get('/delete-post/{posts_id}','Post_Controller@delete_posts')->middleware('auth_roles');
+Route::get('/non-active-post/{posts_id}','Post_Controller@non_active_post')->middleware('auth_roles');
+Route::get('/active-post/{posts_id}','Post_Controller@active_post')->middleware('auth_roles');
+Route::get('/edit-post/{posts_id}','Post_Controller@edit_post')->middleware('auth_roles');
+Route::post('/update-post/{posts_id}','Post_Controller@update_post')->middleware('auth_roles');
+Route::get('/post-details/{posts_slug}','Post_Controller@show_post_details');

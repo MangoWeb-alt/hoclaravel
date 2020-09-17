@@ -17,6 +17,7 @@ class CreateTblCustomer extends Migration
             $table->Increments('customer_id');
             $table->String('customer_name');
             $table->String('customer_email');
+            $table->String('customer_password');
             $table->String('customer_address');
             $table->String('customer_phone');
             $table->timestamps();
