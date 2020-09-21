@@ -14,14 +14,14 @@ class CreateTblCategory extends Migration
     public function up()
     {
         Schema::create('tbl_category', function (Blueprint $table) {
-            $table->Increments('category_id');
+            $table->Increments('category_id')->unsigned();
             $table->String('category_name');
             $table->String('category_slug');
             $table->String('meta_keywords');
             $table->String('category_description');
             $table->String('category_parent');
-            $table->Integer('category_status');
-
+            $table->Integer('category_status')->unsigned();
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
     }

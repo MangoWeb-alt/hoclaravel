@@ -119,7 +119,7 @@ class Post_Controller extends Controller
     }
     public function show_post_details(Request $request,$posts_slug)
     {
-        $meta_description = '';
+        $meta_description ='' ;
         $meta_keywords = '';
         $meta_title = '' ;
         $url_canonical = $request->url();
@@ -128,10 +128,19 @@ class Post_Controller extends Controller
         $slider = Banner::orderby('slider_id','DESC')->get();
         $category_product = Category::orderby('category_id','desc')->where('category_status','2')->get();
         $brand_product = Brand::orderby('brand_id','desc')->get();
-
-        $post = Post::where('posts_status','2')->where('posts_slug',$posts_slug)->orderby('posts_id','DESC')->get();
+        $post = Post::where('posts_status','2')->where('posts_slug',$posts_slug)->orderby('posts_id','DESC')->paginate(5);
+        foreach ($post as $key => $value){
+            $post_category_id = $value->post_category_id;
+            $meta_description = $value->posts_description;
+            $meta_keywords = $value->posts_meta_keywords;
+            $meta_title = $value->posts_name ;
+            $url_canonical = $request->url();
+        }
+        $related = Post::where('posts_status','2')->orderby('posts_id','DESC')->where('post_category_id',$post_category_id)
+            ->WhereNotIn('posts_slug',[$posts_slug])->take(5)->get();
         return view ('Home.post.post_details')->with('post',$post)->with('category_product',$category_product)->with('brand_product',$brand_product)
             ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post)
+            ->with('related',$related);
     }
 }

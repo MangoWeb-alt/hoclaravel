@@ -11,12 +11,25 @@ class BrandTableSeeder extends Seeder
      */
     public function run()
     {
-        Brand::truncate();
-        Brand::create([
-            'brand_name'=> 'Dell',
-            'brand_description'=>'Dell',
-            'meta_keywords'=>'Dell',
-            'brand_status'=>'2'
-        ]);
+
+        $brandData = $this->getBrandData();
+
+        foreach($brandData as $data){
+            Brand::create($data);
+        }
     }
+    private function getBrandData(){
+        return [
+            [
+                "brand_name" => "Dell",
+                "brand_description" =>"Dell",
+                "meta_keywords" => "Dell",
+                "brand_status" => "Dell",
+            ],
+        ];
+    }
+
+
+
+
 }

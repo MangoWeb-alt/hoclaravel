@@ -11,8 +11,6 @@ class CategoryPostTableSeeder extends Seeder
      */
     public function run()
     {
-        CategoryPost::truncate();
-
         CategoryPost::create([
             'post_category_name'=> 'Phone',
             'post_category_slug'=> 'Nutrition',

@@ -87,9 +87,9 @@ class Post_Category_Controller extends Controller
         CategoryPost::Where('post_category_id',$post_category_id)->delete();
         return Redirect()->back()->with('message','Delete post successfully');
     }
-    public function post_category_details(Request $request,$post_category_slug)
+    public function post_category_details(Request $request,$post_category_id)
     {
-        $meta_description = '';
+        $meta_description ='' ;
         $meta_keywords = '';
         $meta_title = '' ;
         $url_canonical = $request->url();
@@ -99,8 +99,16 @@ class Post_Category_Controller extends Controller
         $category_product = Category::orderby('category_id','desc')->where('category_status','2')->get();
         $brand_product = Brand::orderby('brand_id','desc')->get();
 
+        $post = Post::where('posts_status','2')->where('post_category_id',$post_category_id)->orderby('posts_id','DESC')->get();
+        foreach($post as $key => $value){
+            $meta_description = $value->posts_description ;
+            $meta_keywords =$value->posts_meta_keywords ;
+            $meta_title =$value->posts_name ;
+            $url_canonical = $request->url();
+        }
+
         return view ('Home.post.post_category')->with('category_product',$category_product)->with('brand_product',$brand_product)
             ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post)->with('post',$post);
     }
 }

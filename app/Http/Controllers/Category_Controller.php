@@ -103,7 +103,7 @@ class Category_Controller extends Controller
         $meta_title = '' ;
         $url_canonical = $request->url();
 
-        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
         $category_product = Category::orderby('category_id','desc')->where('category_status','2')->get();
         $brand_product = Brand::orderby('brand_id','desc')->get();
@@ -119,14 +119,14 @@ class Category_Controller extends Controller
         }
         return view('Home.category.show_category')->with('category_product',$category_product)->with('brand_product',$brand_product)
             ->with('show_category',$show_category)->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
     }
     public function export_csv(){
         return Excel::download(new ExcelExport , 'category_product.xlsx');
     }
     public function import_csv(Request $request){
-        $path = $request->file('file')->getRealPath();
-        Excel::import(new ExcelImport, $path);
+//        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImport, $request->file('file'));
         return back();
     }
 }

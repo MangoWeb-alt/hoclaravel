@@ -14,12 +14,13 @@ class TblCategoryPost extends Migration
     public function up()
     {
         Schema::create('tbl_category_post', function (Blueprint $table) {
-            $table->Increments('post_category_id');
+            $table->Increments('post_category_id')->unsigned();
             $table->String('post_category_name');
-            $table->LongText('post_category_name');
-            $table->String('post_category_name');
+            $table->LongText('post_category_description');
+            $table->String('post_category_slug');
             $table->String('post_category_meta_keywords');
-            $table->Integer('post_category_status');
+            $table->Integer('post_category_status')->unsigned();
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class Home_Controller extends Controller
     }
     public function index(Request $request)
     {
-        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
 
        $meta_description = "Accessories for Game;Especially GamePad!";
@@ -32,7 +32,7 @@ class Home_Controller extends Controller
             ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')->get();
         return view('Home.home')->with('category_product',$category_product)->with('brand_product',$brand_product)->with('all_product',$all_product)
             ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)
-            ->with('slider',$slider)->with('post',$post);
+            ->with('slider',$slider)->with('category_post',$category_post);
     }
     public function show_search(Request $request)
     {

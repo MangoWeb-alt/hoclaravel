@@ -95,7 +95,7 @@ class Brand_Controller extends Controller
     }
     public function show_brand(Request $request,$brand_id)
     {
-        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $meta_description = '';
         $meta_keywords ='';
         $meta_title ='';
@@ -114,6 +114,6 @@ class Brand_Controller extends Controller
         }
         return view('Home.brand.show_brand')->with('category_product',$category_product)->with('brand_product',$brand_product)->with('show_brand',$show_brand)
             ->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
     }
 }

@@ -134,7 +134,7 @@ class Product_Controller extends Controller
     }
     public function product_details(Request $request,$product_id)
     {
-        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
         $category_product = Category::orderby('category_id','desc')->where('category_status','2')->get();
         $brand_product = Brand::orderby('brand_id','desc')->where('brand_status','2')->get();
@@ -156,7 +156,7 @@ class Product_Controller extends Controller
             ->whereNotIn('product_id',[$product_id])->limit(3)->get();
         return view('Home.details.show_details')->with('category_product',$category_product)->with('brand_product',$brand_product)
             ->with('show_details',$show_details)->with('related_product',$related_product)->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
     }
 
 

@@ -13,7 +13,7 @@ class CouponTableSeeder extends Seeder
     {
         Coupon::truncate();
 
-        Coupon::create([
+        Coupon::created([
             'coupon_name'=>'Discount 30%',
             'coupon_number'=>'30',
             'coupon_code'=>'HDH375Y',

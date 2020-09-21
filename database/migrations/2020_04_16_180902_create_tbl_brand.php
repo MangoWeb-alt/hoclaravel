@@ -14,11 +14,12 @@ class CreateTblBrand extends Migration
     public function up()
     {
         Schema::create('tbl_brand', function (Blueprint $table) {
-            $table->Increments('brand_id');
+            $table->Increments('brand_id')->unsigned();
             $table->string('brand_name');
             $table->string('brand_description');
             $table->string('meta_keywords');
-            $table->integer('brand_status');
+            $table->integer('brand_status')->unsigned();
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
     }

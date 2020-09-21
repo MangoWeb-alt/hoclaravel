@@ -14,12 +14,13 @@ class CreateTblCustomer extends Migration
     public function up()
     {
         Schema::create('tbl_customer', function (Blueprint $table) {
-            $table->Increments('customer_id');
+            $table->Increments('customer_id')->unsigned();
             $table->String('customer_name');
             $table->String('customer_email');
             $table->String('customer_password');
             $table->String('customer_address');
             $table->String('customer_phone');
+            $table->engine='InnoDB';
             $table->timestamps();
         });
     }

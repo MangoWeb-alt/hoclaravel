@@ -161,8 +161,8 @@
                             <li><a href="{{URL::to('/Home')}}" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    @foreach($post as $key => $value)
-                                    <li><a href="{{url('/post-details/'.$value->post_category_slug)}}">{{$value->post_category_name}}</a></li>
+                                    @foreach($category_post as $key => $value)
+                                    <li><a href="{{url('/post-category-details/'.$value->post_category_id)}}">{{$value->post_category_name}}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

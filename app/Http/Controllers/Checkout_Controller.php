@@ -52,7 +52,7 @@ class Checkout_Controller extends Controller
     }
     public function checkout(Request $request)
     {
-        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
         $meta_description = "";
         $meta_keywords ="" ;
@@ -63,7 +63,7 @@ class Checkout_Controller extends Controller
         $category_product = DB::table('tbl_category')->orderBy('category_id','desc')->where('category_status','2')->get();
         $brand_product = DB::table('tbl_brand')->orderBy('brand_id','desc')->where('brand_status','2')->get();
         return view('Home.checkout.checkout')->with('category_product',$category_product)->with('brand_product',$brand_product)->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-        ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider)->with('post',$post);
+        ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider)->with('category_post',$category_post);
     }
     public function save_checkout(Request $request)
     {

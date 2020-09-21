@@ -41,8 +41,8 @@ Route::post('/update-category/{category_id}','Category_Controller@update_categor
 Route::get('/delete-category/{category_id}','Category_Controller@delete_category')->middleware('auth_roles');
 Route::get('/show-category/{category_id}','Category_Controller@show_category');
 
-//Route::post('/export-csv','Category_Controller@export_csv')->middleware('auth_roles');
-//Route::post('/import-csv','Category_Controller@import_csv')->middleware('auth_roles');
+Route::get('/export-csv','Category_Controller@export_csv')->middleware('auth_roles');
+Route::post('/import-csv','Category_Controller@import_csv')->middleware('auth_roles');
 
 //brand
 Route::get('/add-brand','Brand_Controller@add_brand')->middleware('auth_roles');
@@ -181,7 +181,7 @@ Route::get('/active-category-post/{post_category_id}','Post_Category_Controller@
 Route::get('/edit-category-post/{post_category_id}','Post_Category_Controller@edit_category_post')->middleware('auth_roles');
 Route::post('/update-category-post/{post_category_id}','Post_Category_Controller@update_category_post')->middleware('auth_roles');
 Route::get('/delete-category-post/{post_category_id}','Post_Category_Controller@delete_category_post')->middleware('auth_roles');
-Route::get('/post-category-details/{post_category_slug}','Post_Category_Controller@post_category_details');
+Route::get('/post-category-details/{post_category_id}','Post_Category_Controller@post_category_details');
 //Post
 Route::get('/add-post','Post_Controller@add_post')->middleware('auth_roles');
 Route::post('/save-post','Post_Controller@save_post')->middleware('auth_roles');

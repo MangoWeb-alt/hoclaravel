@@ -95,7 +95,8 @@ class Cart_Controller extends Controller
     }
     public function show_cart_ajax(Request $request)
     {
-        $post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
+
+        $category_post = CategoryPost::orderby('post_category_id','DESC')->where('post_category_status','2')->get();
         $slider = Banner::orderby('slider_id','DESC')->get();
         $meta_description = "Cart Ajax";
         $meta_keywords ="Cart Ajax" ;
@@ -105,7 +106,7 @@ class Cart_Controller extends Controller
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->where('brand_status','2')->get();
 
         return view('Home.cart.cart_ajax')->with('category_product',$category_product)->with('brand_product',$brand_product)->with('meta_description',$meta_description)->with('meta_keywords',$meta_keywords)
-            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('post',$post);
+            ->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('category_post',$category_post);
     }
     public function delete_cart_ajax($session_id)
     {
@@ -143,6 +144,7 @@ class Cart_Controller extends Controller
         $meta_keywords ="Cart" ;
         $meta_title ="My Cart" ;
         $url_canonical = $request->url();
+
 
         $category_product = DB::table('tbl_category')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id','desc')->get();

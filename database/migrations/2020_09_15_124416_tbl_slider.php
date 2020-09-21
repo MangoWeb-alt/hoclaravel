@@ -14,10 +14,11 @@ class TblSlider extends Migration
     public function up()
     {
         Schema::create('tbl_slider', function (Blueprint $table) {
-            $table->Increments('slider_id');
+            $table->Increments('slider_id')->unsigned();
             $table->String('slider_name');
-            $table->Integer('slider_status');
+            $table->Integer('slider_status')->unsigned();
             $table->String('slider_image');
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
     }

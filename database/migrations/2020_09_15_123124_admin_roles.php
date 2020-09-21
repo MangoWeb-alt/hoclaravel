@@ -14,10 +14,11 @@ class AdminRoles extends Migration
     public function up()
     {
         Schema::create('admin_roles', function (Blueprint $table) {
-            $table->Increments('id_admin_roles');
-            $table->Integer('admin_admin_id');
-            $table->Integer('roles_id_roles');
+            $table->Increments('id_admin_roles')->unsigned();
+            $table->Integer('admin_admin_id')->unsigned();
+            $table->Integer('roles_id_roles')->unsigned();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

@@ -11,7 +11,6 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        Product::truncate();
 
         Product::create([
                 'category_id'=>'1',

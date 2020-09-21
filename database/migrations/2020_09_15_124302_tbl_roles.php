@@ -14,8 +14,9 @@ class TblRoles extends Migration
     public function up()
     {
         Schema::create('tbl_roles', function (Blueprint $table) {
-            $table->Increments('id_roles');
+            $table->Increments('id_roles')->unsigned();
             $table->String('name',100);
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
     }

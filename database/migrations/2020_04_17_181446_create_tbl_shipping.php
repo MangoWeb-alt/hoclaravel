@@ -14,13 +14,14 @@ class CreateTblShipping extends Migration
     public function up()
     {
         Schema::create('tbl_shipping', function (Blueprint $table) {
-            $table->Increments('shipping_id');
+            $table->Increments('shipping_id')->unsigned();
             $table->String('shipping_email');
             $table->String('shipping_name');
             $table->String('shipping_address');
             $table->String('shipping_phone');
             $table->String('shipping_notes');
             $table->String('shipping_method');
+            $table->engine="InnoDB";
             $table->timestamps();
         });
     }

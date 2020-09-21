@@ -14,12 +14,13 @@ class CreateTblCoupon extends Migration
     public function up()
     {
         Schema::create('tbl_coupon', function (Blueprint $table) {
-            $table->Increments('coupon_id');
+            $table->Increments('coupon_id')->unsigned();
             $table->String('coupon_name');
             $table->String('coupon_number');
             $table->String('coupon_code');
             $table->String('coupon_time');
             $table->String('coupon_condition');
+            $table->engine = 'InnoDB';
             $table->timestamps();
         });
     }
